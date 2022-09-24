@@ -16,11 +16,7 @@ const days: Days = {
 function parse (sequence: string) {
 	return sequence.split('').reduce((result: { [key: string]: number }, char: keyof Days) => {
 		const { key, value } = days[char]
-		if (result.hasOwnProperty(key)) {
-			result[key] += value
-			return result
-		}
-		result[key] = value
+		result[key] = (result[key] || 0) + value
 		return result
 	}, {})
 }
