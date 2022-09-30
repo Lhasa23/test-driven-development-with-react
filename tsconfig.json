@@ -10,6 +10,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "src/*": [
         "src/*"
@@ -20,10 +21,10 @@
     }
   },
   "include": [
-    "src/chapter2/src/**/*"
+    "src/*"
   ],
   "exclude": [
     "node_modules",
-    "src/chapter2/test/**/*.spec.ts"
+    "test/**/*.spec.ts"
   ]
 }
