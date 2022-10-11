@@ -1,5 +1,5 @@
 import { expect, describe, it } from 'vitest'
-import { add } from '../src/calc'
+import { add } from 'src/chapter2/calc'
 
 describe('calculator', function () {
 	it('add two numbers', function () {
