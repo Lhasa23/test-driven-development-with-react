@@ -1,5 +1,5 @@
 import Typography from '@material-ui/core/Typography'
-import BookList from './components/BookList'
+import BookListContainer from './components/BookListContainer'
 
 function App () {
 	return (
@@ -7,7 +7,7 @@ function App () {
 			<Typography variant="h2" component="h2" data-test="heading">
 				Bookish
 			</Typography>
-			<BookList />
+			<BookListContainer />
 		</div>)
 }
 
