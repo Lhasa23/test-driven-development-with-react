@@ -1,4 +1,27 @@
+import axios from 'axios'
+
+const books = [
+	{ 'name': 'Refactoring', 'id': 1 },
+	{ 'name': 'Domain-driven design', 'id': 2 },
+	{ 'name': 'Building Microservices', 'id': 3 }
+]
+
 describe('Bookish application', function () {
+	before(() => {
+		return axios.delete('http://localhost:8998/books?_cleanup=true').catch((err) => console.log(err))
+	})
+
+	beforeEach(() => {
+
+		return books.forEach((book) => {
+			axios.post('http://localhost:8998/books', book, { headers: { 'Content-Type': 'application/json' } })
+		})
+	})
+
+	afterEach(() => {
+		return axios.delete('http://localhost:8998/books?_cleanup=true').catch((err) => console.log(err))
+	})
+
 	it('Visits the bookish', function () {
 		cy.visit('http://localhost:5173/')
 		cy.get('h2[data-test="heading"]').contains('Bookish')
@@ -7,11 +30,13 @@ describe('Bookish application', function () {
 	it('should show book list', function () {
 		cy.visit('http://localhost:5173/')
 		cy.get('div[data-test="book-list"]').should('exist')
-		cy.get('div.book-item').should((books) => {
-			expect(books).to.have.length(2)
+		cy.get('div.book-item').should((booklist) => {
+			expect(booklist).to.have.length(books.length)
 
-			const title = [...books].map(e => e.querySelector('h2').innerHTML)
-			expect(title).to.deep.equal(['Refactoring', 'Domain-driven design'])
+			const titles = [...booklist].map(x => x.querySelector('h2').innerHTML)
+			expect(titles).to.deep.equal(
+				books.map(value => value.name)
+			)
 		})
 	})
 })
