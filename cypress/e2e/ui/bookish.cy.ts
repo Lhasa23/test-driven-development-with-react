@@ -24,12 +24,12 @@ describe('Bookish application', function () {
 
 	it('Visits the bookish', function () {
 		cy.visit('http://localhost:5173/')
-		cy.get('h2[data-test="heading"]').contains('Bookish')
+		cy.get('h2[data-tests="heading"]').contains('Bookish')
 	})
 
 	it('should show book list', function () {
 		cy.visit('http://localhost:5173/')
-		cy.get('div[data-test="book-list"]').should('exist')
+		cy.get('div[data-tests="book-list"]').should('exist')
 		cy.get('div.book-item').should((booklist) => {
 			expect(booklist).to.have.length(books.length)
 
