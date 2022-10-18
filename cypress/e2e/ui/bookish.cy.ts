@@ -1,35 +1,21 @@
 import axios from 'axios'
 
-const books = [
-	{ 'name': 'Refactoring', 'id': 1 },
-	{ 'name': 'Domain-driven design', 'id': 2 },
-	{ 'name': 'Building Microservices', 'id': 3 }
-]
+let books: any[] = []
 
 describe('Bookish application', function () {
-	before(() => {
-		return axios.delete('http://localhost:8998/books?_cleanup=true').catch((err) => console.log(err))
-	})
-
-	beforeEach(() => {
-
-		return books.forEach((book) => {
-			axios.post('http://localhost:8998/books', book, { headers: { 'Content-Type': 'application/json' } })
-		})
-	})
-
-	afterEach(() => {
-		return axios.delete('http://localhost:8998/books?_cleanup=true').catch((err) => console.log(err))
+	beforeEach(async () => {
+		const response = await axios.get('http://localhost:8999/books')
+		return books = response.data
 	})
 
 	it('Visits the bookish', function () {
 		cy.visit('http://localhost:5173/')
-		cy.get('h2[data-tests="heading"]').contains('Bookish')
+		cy.get('h2[data-test="heading"]').contains('Bookish')
 	})
 
 	it('should show book list', function () {
 		cy.visit('http://localhost:5173/')
-		cy.get('div[data-tests="book-list"]').should('exist')
+		cy.get('div[data-test="book-list"]').should('exist')
 		cy.get('div.book-item').should((booklist) => {
 			expect(booklist).to.have.length(books.length)
 
