@@ -2,7 +2,7 @@ import React from 'react'
 
 const BookList: React.FC<{ books: any[], loading: boolean, error: boolean }> = ({ books, loading, error }) => {
 	if (loading) {
-		return <div><p>Loading...</p></div>
+		return (<div><p>Loading...</p></div>)
 	}
 
 	if (error) {
@@ -14,6 +14,7 @@ const BookList: React.FC<{ books: any[], loading: boolean, error: boolean }> = (
 			books.map(book => (
 				<div className="book-item" key={book.id}>
 					<h2 className="title">{book.name}</h2>
+					<a href={`/books/${book.id}`}>View Details</a>
 				</div>
 			))
 		}
