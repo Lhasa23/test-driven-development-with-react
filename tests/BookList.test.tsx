@@ -1,7 +1,7 @@
 import React from 'react'
 import { describe, it, expect } from 'vitest'
 import { render } from '@testing-library/react'
-import BookList from '../src/components/BookList'
+import BookList from '../src/bookList/BookList'
 
 describe('BookList', () => {
 	it('loading status', () => {
