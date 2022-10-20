@@ -3,9 +3,9 @@ import BookList from './BookList'
 import { useRemoteService } from '../hooks/useRemoteService'
 
 const BookListContainer: React.FC = () => {
-	const { books, loading, error } = useRemoteService()
+	const { resData, loading, error } = useRemoteService('', [])
 
-	return <BookList books={books} loading={loading} error={error} />
+	return <BookList books={resData} loading={loading} error={error} />
 }
 
 export default BookListContainer

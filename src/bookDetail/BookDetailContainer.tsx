@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import BookDetail from './BookDetail'
-import axios from 'axios'
+
 import { useParams } from 'react-router'
+import { useRemoteService } from '../hooks/useRemoteService'
 
 const BookDetailContainer: React.FC = () => {
-	const [book, setBook] = useState({})
 	let { id } = useParams()
+	const { resData } = useRemoteService(`/${id}`, {})
+	console.log(resData)
 
-	useEffect(() => {
-		const getBookDetail = async () => {
-			const res = await axios.get(`http://localhost:8999/books/${id}`)
-			setBook(res.data)
-		}
-
-		getBookDetail().then()
-	}, [])
-	return <BookDetail book={book} />
+	return <BookDetail book={resData} />
 }
 
 export default BookDetailContainer
