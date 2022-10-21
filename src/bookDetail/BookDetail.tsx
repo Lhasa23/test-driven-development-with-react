@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 const BookDetail: React.FC<{ book: any }> = ({ book }) => {
 	const [overLength, setOverLength] = useState(false)
 	const [expanded, setExpanded] = useState(false)
-	const [desc, setDesc] = useState(book.description)
+	const [desc, setDesc] = useState('')
 
 	const objEmpty = (obj: Object): boolean => {
 		return obj
@@ -18,7 +18,7 @@ const BookDetail: React.FC<{ book: any }> = ({ book }) => {
 
 	useEffect(() => {
 		if (objEmpty(book)) return
-		if (!overLength) return
+		if (!overLength) return setDesc(book.description)
 		if (expanded) {
 			setDesc(book.description)
 			return

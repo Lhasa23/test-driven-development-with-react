@@ -9,7 +9,7 @@ describe('BookDetail', () => {
 			book: {
 				id: 1,
 				name: 'Refactoring',
-				description: `Martin Fowler\'s Refactoring defined core ideas and techniques that hundreds of thousands of developers have used to improve their software.`
+				description: `Martin Fowler\'s Refactoring defined core ideas and techniques that.`
 			}
 		}
 		const { container } = render(<BookDetail {...props} />)
