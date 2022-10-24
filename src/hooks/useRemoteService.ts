@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export const useRemoteService = <T> (url: string, initial: T): { resData: T, loading: boolean, error: boolean } => {
+export const useRemoteService = <T> (URL: string, initial: T): { resData: T, loading: boolean, error: boolean, setUrl: React.Dispatch<React.SetStateAction<string>> } => {
 	const baseURL = 'http://localhost:8999/books'
 
 	const [resData, setResData] = useState(initial)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(false)
+	const [url, setUrl] = useState(URL)
 
 	useEffect(() => {
 		const getBooks = async () => {
@@ -24,7 +25,7 @@ export const useRemoteService = <T> (url: string, initial: T): { resData: T, loa
 		}
 
 		getBooks().then()
-	}, [])
+	}, [url])
 
-	return { resData, loading, error }
+	return { resData, loading, error, setUrl }
 }

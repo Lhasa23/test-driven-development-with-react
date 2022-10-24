@@ -8,13 +8,15 @@ describe('Bookish application', function () {
 		return books = response.data
 	})
 
-	it('Visits the bookish', function () {
+	function visitApplicationDev () {
 		cy.visit('http://localhost:5173/')
-		cy.get('h2[data-test="heading"]').contains('Bookish')
-	})
+	}
 
-	it('should show book list', function () {
-		cy.visit('http://localhost:5173/')
+	function checkApplicationTitle () {
+		cy.get('h2[data-test="heading"]').contains('Bookish')
+	}
+
+	function checkBookListTitle () {
 		cy.get('div[data-test="book-list"]').should('exist')
 		cy.get('div.book-item').should((booklist) => {
 			expect(booklist).to.have.length(books.length)
@@ -24,14 +26,37 @@ describe('Bookish application', function () {
 				books.map(value => value.name)
 			)
 		})
-	})
-	it('Goes to the detail page', () => {
-		cy.visit('http://localhost:5173/')
+	}
 
-		const index = 0
-
-		cy.get('div.book-item').contains('View Details').eq(index).click()
+	function checkBookDetail () {
+		cy.get('div.book-item').contains('View Details').eq(0).click()
 		cy.url().should('include', '/books/1')
 		cy.get('h2.title').contains('Refactoring')
+	}
+
+	function checkSearchingKeyword () {
+		cy.get('[data-test="search"] input').type('design')
+		cy.get('div.book-item').should('have.length', 1)
+		cy.get('div.book-item').eq(0).contains('Domain-driven design')
+	}
+
+	it('Visits the bookish', function () {
+		visitApplicationDev()
+		checkApplicationTitle()
+	})
+
+	it('should show book list', function () {
+		visitApplicationDev()
+		checkBookListTitle()
+	})
+
+	it('Goes to the detail page', () => {
+		visitApplicationDev()
+		checkBookDetail()
+	})
+
+	it('should search books from keyword', () => {
+		visitApplicationDev()
+		checkSearchingKeyword()
 	})
 })
