@@ -1,5 +1,5 @@
 import { describe, it, expect, vitest } from 'vitest'
-import { fetchBooks, setSearchTerm } from './actions'
+import { fetchBooks } from './actions'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import axios from 'axios'
@@ -9,16 +9,6 @@ const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
 describe('Books Store Actions', () => {
-	it('should set search keyword', () => {
-		const keyword = ''
-		const expected = {
-			type: types.SET_SEARCH_KEYWORD,
-			keyword
-		}
-		const action = setSearchTerm(keyword)
-		expect(action).toEqual(expected)
-	})
-
 	it('should fetch book list success (without keyword)', () => {
 		const books = [
 			{ id: 1, name: 'Refactoring' },
