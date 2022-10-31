@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { debounce, TextField } from '@material-ui/core'
 
 const SearchBox: React.FC<{ onSearch: React.Dispatch<React.SetStateAction<string>> }> = ({ onSearch }) => {
-	const [term, setTerm] = useState('')
+	const [keyword, setKeyword] = useState('')
 
 	useEffect(() => {
-		if (term.trim() !== '') {
-			onSearchDebounced(`?q=${term.trim()}`)
+		if (keyword.trim() !== '') {
+			onSearchDebounced(`?q=${keyword.trim()}`)
 		}
-	}, [term])
+	}, [keyword])
 
 	const onSearchDebounced = useCallback(debounce((query) => {
 		onSearch(query)
@@ -16,9 +16,9 @@ const SearchBox: React.FC<{ onSearch: React.Dispatch<React.SetStateAction<string
 
 	return <TextField
 		label="Search"
-		value={term}
+		value={keyword}
 		data-test="search"
-		onChange={(e) => setTerm(e.target.value)}
+		onChange={(e) => setKeyword(e.target.value)}
 		margin="normal"
 		variant="outlined"
 	/>
