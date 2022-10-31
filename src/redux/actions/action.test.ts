@@ -8,7 +8,7 @@ import types from '../types'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('BookListContainer general test', () => {
+describe('Books Store Actions', () => {
 	it('should set search keyword', () => {
 		const keyword = ''
 		const expected = {
