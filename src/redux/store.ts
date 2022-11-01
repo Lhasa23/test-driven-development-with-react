@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 
 import reducer from './reducer/reducer'
 
-const initialState = {}
+const initialState = { books: [], loading: false, error: false, keyword: '', detail: {} }
 const middlewares = [thunk]
 const composedEnhancers = compose(
 	applyMiddleware(...middlewares)

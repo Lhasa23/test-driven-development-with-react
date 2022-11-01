@@ -1,17 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { debounce, TextField } from '@material-ui/core'
+import { useDispatch } from 'react-redux'
 
-const SearchBox: React.FC<{ onSearch: React.Dispatch<React.SetStateAction<string>> }> = ({ onSearch }) => {
+import * as actions from '../../src/redux/actions/actions'
+
+const SearchBox: React.FC = () => {
 	const [keyword, setKeyword] = useState('')
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		if (keyword.trim() !== '') {
-			onSearchDebounced(`?q=${keyword.trim()}`)
+		let key = keyword.trim()
+		if (key !== '') {
+			dispatch(actions.setKeyword(key))
+			onSearchDebounced()
 		}
 	}, [keyword])
 
-	const onSearchDebounced = useCallback(debounce((query) => {
-		onSearch(query)
+	const onSearchDebounced = useCallback(debounce(() => {
+		dispatch(actions.fetchBooks())
 	}, 500), [])
 
 	return <TextField

@@ -35,12 +35,12 @@ describe('Bookish application', function () {
 	}
 
 	const checkSearchingKeyword = () => {
-		cy.get('[data-test="search"] input').type('design')
+		cy.get('[data-test="search"] input').type('domain')
 		cy.get('div.book-item').should('have.length', 1)
 		cy.get('div.book-item').eq(0).contains('Domain-driven design')
 	}
 
-	it('Visits the bookish', function () {
+	it('should visit the bookish', function () {
 		visitApplicationDev()
 		checkApplicationTitle()
 	})
@@ -50,7 +50,7 @@ describe('Bookish application', function () {
 		checkBookListTitle()
 	})
 
-	it('Goes to the detail page', () => {
+	it('should go to the detail page', () => {
 		visitApplicationDev()
 		checkBookDetail()
 	})

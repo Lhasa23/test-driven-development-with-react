@@ -1,6 +1,6 @@
 import { describe, it, expect, vitest } from 'vitest'
 import axios from 'axios'
-import { fetchBooks, setKeyword } from './actions/actions'
+import { fetchBookDetail, fetchBooks, setKeyword } from './actions/actions'
 import store from './store'
 
 describe('Store Integration test', () => {
@@ -17,6 +17,20 @@ describe('Store Integration test', () => {
 		})
 	})
 
+	it('fetch book detail success', () => {
+		const book = {
+			id: 1,
+			name: 'Refactoring',
+			description: `Martin Fowler's Refactoring defined core ideas and techniques that.`
+		}
+		axios.get = vitest.fn().mockImplementation(() => Promise.resolve({ data: book }))
+
+		return store.dispatch(fetchBookDetail(1)).then(() => {
+			const state = store.getState()
+			expect(state.detail).toEqual(book)
+		})
+	})
+
 	it('fetch books success (with keyword)', () => {
 		axios.get = vitest.fn().mockImplementation(() => Promise.resolve({ data: books }))
 
@@ -27,7 +41,7 @@ describe('Store Integration test', () => {
 		})
 	})
 
-	it('fetch books failed', () => {
+	it('fetch data failed', () => {
 		const message = 'fetch book error'
 		axios.get = vitest.fn().mockImplementation(() => Promise.reject({ message }))
 
