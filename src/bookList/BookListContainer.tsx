@@ -15,9 +15,12 @@ const BookListContainer: React.FC = () => {
 		dispatch(actions.fetchBooks())
 	}, [])
 
+	const searchByKeyword = () => {
+		dispatch(actions.fetchBooks())
+	}
 
 	return (<>
-			<SearchBox />
+			<SearchBox onSearch={searchByKeyword} />
 			<BookList books={books} loading={loading} error={error} />
 		</>
 	)

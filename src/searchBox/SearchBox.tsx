@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import * as actions from '../../src/redux/actions/actions'
 
-const SearchBox: React.FC = () => {
+const SearchBox: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
 	const [keyword, setKeyword] = useState('')
 	const dispatch = useDispatch()
 
@@ -17,7 +17,7 @@ const SearchBox: React.FC = () => {
 	}, [keyword])
 
 	const onSearchDebounced = useCallback(debounce(() => {
-		dispatch(actions.fetchBooks())
+		onSearch()
 	}, 500), [])
 
 	return <TextField

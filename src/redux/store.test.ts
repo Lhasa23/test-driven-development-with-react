@@ -18,16 +18,11 @@ describe('Store Integration test', () => {
 	})
 
 	it('fetch book detail success', () => {
-		const book = {
-			id: 1,
-			name: 'Refactoring',
-			description: `Martin Fowler's Refactoring defined core ideas and techniques that.`
-		}
-		axios.get = vitest.fn().mockImplementation(() => Promise.resolve({ data: book }))
+		axios.get = vitest.fn().mockImplementation(() => Promise.resolve({ data: books[0] }))
 
 		return store.dispatch(fetchBookDetail(1)).then(() => {
 			const state = store.getState()
-			expect(state.detail).toEqual(book)
+			expect(state.detail).toEqual(books[0])
 		})
 	})
 
