@@ -1,15 +1,15 @@
 import axios from 'axios'
 import types from '../types'
-import { Dispatch, Action } from 'redux'
+import { AppDispatch } from '../store'
 
 export const setKeyword = (keyword: string) => {
-	return (dispatch: Dispatch<Action>) => {
+	return (dispatch: AppDispatch) => {
 		dispatch({ type: types.SET_SEARCH_KEYWORD, keyword })
 	}
 }
 
 export const fetchBooks = () => {
-	return async (dispatch: Dispatch<Action>, getState: () => any) => {
+	return async (dispatch: AppDispatch, getState: () => any) => {
 		dispatch({ type: types.FETCH_PENDING })
 		const state = getState()
 		try {
@@ -22,7 +22,7 @@ export const fetchBooks = () => {
 }
 
 export const fetchBookDetail = (id: string | number) => {
-	return async (dispatch: Dispatch<Action>) => {
+	return async (dispatch: AppDispatch) => {
 		dispatch({ type: types.FETCH_PENDING })
 		try {
 			const res = await axios.get(`http://localhost:8999/books/${id}`)

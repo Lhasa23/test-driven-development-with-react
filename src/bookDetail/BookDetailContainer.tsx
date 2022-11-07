@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import BookDetail from './BookDetail'
 import * as actions from '../redux/actions/actions'
-import bookListSelector from '../redux/selector'
+import { bookDetailSelector } from '../redux/selector'
 
 const BookDetailContainer: React.FC = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
-	const { detail } = useSelector(bookListSelector)
+	const { detail } = useSelector(bookDetailSelector)
 
 	useEffect(() => {
 		dispatch(actions.fetchBookDetail(id))

@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect'
 
-const bookListSelector = createSelector([
+export const bookListSelector = createSelector([
 	state => state.books,
-	state => state.detail,
 	state => state.loading,
 	state => state.error
-], (books, detail, loading, error) => ({ books, detail, loading, error }))
+], (books, loading, error) => ({ books, loading, error }))
 
-export default bookListSelector
+export const bookDetailSelector = createSelector([
+	state => state.detail
+], (detail) => ({ detail }))

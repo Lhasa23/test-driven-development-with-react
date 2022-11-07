@@ -1,18 +1,16 @@
-import { applyMiddleware, createStore, compose } from 'redux'
-import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit'
 
 import reducer from './reducer/reducer'
 
 const initialState = { books: [], loading: false, error: false, keyword: '', detail: {} }
-const middlewares = [thunk]
-const composedEnhancers = compose(
-	applyMiddleware(...middlewares)
-)
 
-const store = createStore(
+const store = configureStore({
 	reducer,
-	initialState,
-	composedEnhancers
-)
+	preloadedState: initialState
+})
 
 export default store
+
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch
