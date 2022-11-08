@@ -1,7 +1,9 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
+
 import BookListContainer from './bookList/BookListContainer'
 import BookDetailContainer from './bookDetail/BookDetailContainer'
+import BookReviewsContainer from './bookReviews/BookReviewsContainer'
 
 function App () {
 	return (
@@ -13,6 +15,7 @@ function App () {
 				<Route path="/" element={<BookListContainer />} />
 				<Route path="books">
 					<Route path=":id" element={<BookDetailContainer />} />
+					<Route path=":id/reviews" element={<BookReviewsContainer />} />
 				</Route>
 			</Routes>
 		</div>)

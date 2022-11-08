@@ -3,7 +3,14 @@
     {
       "name": "Refactoring",
       "id": 1,
-      "description": "Martin Fowler's Refactoring defined core ideas and techniques that hundreds of thousands of developers have used to improve their software."
+      "description": "Martin Fowler's Refactoring defined core ideas and techniques that hundreds of thousands of developers have used to improve their software.",
+      "reviews": [
+        {
+          "name": "eleven",
+          "date": "2018/06/21",
+          "content": "Excellent work, really impressed by your efforts"
+        }
+      ]
     },
     {
       "name": "Domain-driven design",

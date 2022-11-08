@@ -58,7 +58,7 @@ const BookList: React.FC<{ books: any[], loading: boolean, error: boolean }> = (
 						</CardActionArea>
 						<CardActions>
 							<Button size="small" color="primary">
-								<Link to={`/books/${book.id}`}>View Details</Link>
+								<Link to={`/books/${book.id}`}>View Detail</Link>
 							</Button>
 						</CardActions>
 					</Card>

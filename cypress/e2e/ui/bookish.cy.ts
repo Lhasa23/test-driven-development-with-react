@@ -29,9 +29,10 @@ describe('Bookish application', function () {
 	}
 
 	const checkBookDetail = () => {
-		cy.get('div.book-item').contains('View Details').eq(0).click()
+		cy.get('div.book-item').contains('View Detail').eq(0).click()
 		cy.url().should('include', '/books/1')
 		cy.get('h2.title').contains('Refactoring')
+		cy.get('button.reviews').contains('View Reviews')
 	}
 
 	const checkSearchingKeyword = () => {
@@ -58,5 +59,12 @@ describe('Bookish application', function () {
 	it('should search books from keyword', () => {
 		visitApplicationDev()
 		checkSearchingKeyword()
+	})
+
+	it(`should go to book reviews page`, () => {
+		cy.visit('http://localhost:5173/books/1')
+		cy.get('button.reviews').contains('View Reviews').eq(0).click()
+		cy.url().should('include', '/reviews')
+		cy.get('span.reviewer').contains('eleven')
 	})
 })
