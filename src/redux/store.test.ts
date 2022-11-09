@@ -5,7 +5,17 @@ import store from './store'
 
 describe('Store Integration test', () => {
 	const books = [
-		{ id: 1, name: 'Refactoring' }
+		{
+			id: 1,
+			name: 'Refactoring',
+			reviews: [
+				{
+					name: 'eleven',
+					date: '2018/06/21',
+					content: 'Excellent work, really impressed by your efforts'
+				}
+			]
+		}
 	]
 
 	it('fetch books success', () => {

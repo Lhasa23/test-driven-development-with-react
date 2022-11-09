@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import reducer from './reducer/reducer'
 
-const initialState = { books: [], loading: false, error: false, keyword: '', detail: {} }
+const initialState = { books: [], loading: false, error: false, keyword: '', detail: {}, reviews: [] }
 
 const store = configureStore({
 	reducer,

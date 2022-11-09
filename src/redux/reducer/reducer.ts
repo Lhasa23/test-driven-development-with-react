@@ -9,7 +9,7 @@ const reducer = (initState: any, action: any) => {
 		case types.FETCH_BOOKS_SUCCESS:
 			return { ...initState, books: action.books, loading: false, error: false }
 		case types.FETCH_BOOK_SUCCESS:
-			return { ...initState, detail: action.detail, loading: false, error: false }
+			return { ...initState, detail: action.detail, reviews: action.detail.reviews, loading: false, error: false }
 		case types.FETCH_FAILED:
 			return { ...initState, message: action.message, loading: false, error: true }
 		default:

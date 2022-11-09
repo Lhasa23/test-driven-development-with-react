@@ -17,6 +17,10 @@ describe('BookList', () => {
 		}
 		const { container } = renderWithProvider(<ReviewsList {...props} />)
 		const reviewer = container.querySelector('span.reviewer')
+		const date = container.querySelector('.date')
+		const content = container.querySelector('.content')
 		expect(reviewer.innerHTML).toEqual(props.reviews[0].name)
+		expect(date.innerHTML).toEqual(props.reviews[0].date)
+		expect(content.innerHTML).toEqual(props.reviews[0].content)
 	})
 })

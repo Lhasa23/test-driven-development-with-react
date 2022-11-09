@@ -66,5 +66,7 @@ describe('Bookish application', function () {
 		cy.get('button.reviews').contains('View Reviews').eq(0).click()
 		cy.url().should('include', '/reviews')
 		cy.get('span.reviewer').contains('eleven')
+		cy.get('span.date').contains('2018/06/21')
+		cy.get('p.content').contains('Excellent work, really impressed by your efforts')
 	})
 })

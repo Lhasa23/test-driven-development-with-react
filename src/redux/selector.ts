@@ -7,5 +7,6 @@ export const bookListSelector = createSelector([
 ], (books, loading, error) => ({ books, loading, error }))
 
 export const bookDetailSelector = createSelector([
-	state => state.detail
-], (detail) => ({ detail }))
+	state => state.detail,
+	state => state.reviews
+], (detail, reviews) => ({ detail, reviews }))
