@@ -34,3 +34,21 @@ export const fetchBookDetail = (id: string | number) => {
 		}
 	}
 }
+
+export const submitReview = (id: number, data: any) => {
+	const config = {
+		herders: {
+			'Content-Type': 'application/json'
+		}
+	}
+
+	return async (dispatch: AppDispatch) => {
+		dispatch({ type: types.SUBMIT_PENDING })
+		try {
+			const res = await axios.post(`${BASE_URL}/${id}/reviews`, JSON.stringify(data), config)
+			dispatch({ type: types.SUBMIT_REVIEW_SUCCESS, detail: res.data })
+		} catch (err: any) {
+			dispatch({ type: types.SUBMIT_FAILED, message: err.message })
+		}
+	}
+}

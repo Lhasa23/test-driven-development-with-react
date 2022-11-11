@@ -1,6 +1,6 @@
 import { describe, it, expect, vitest } from 'vitest'
 import axios from 'axios'
-import { fetchBookDetail, fetchBooks, setKeyword } from './actions/actions'
+import { fetchBookDetail, fetchBooks, setKeyword, submitReview } from './actions/actions'
 import store from './store'
 
 describe('Store Integration test', () => {

@@ -8,8 +8,8 @@ describe('Bookish application', function () {
 		return books = response.data
 	})
 
-	const visitApplicationDev = () => {
-		cy.visit('http://localhost:5173/')
+	const visitApplicationDev = (path: string = '/') => {
+		cy.visit(`http://localhost:5173${path}`)
 	}
 
 	const checkApplicationTitle = () => {
@@ -62,7 +62,7 @@ describe('Bookish application', function () {
 	})
 
 	it(`should go to book reviews page`, () => {
-		cy.visit('http://localhost:5173/books/1')
+		visitApplicationDev('/books/1')
 		cy.get('button.reviews').contains('View Reviews').eq(0).click()
 		cy.url().should('include', '/reviews')
 		cy.get('span.reviewer').contains('eleven')

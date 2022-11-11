@@ -16,6 +16,8 @@ function App () {
 				<Route path="books">
 					<Route path=":id" element={<BookDetailContainer />} />
 					<Route path=":id/reviews" element={<BookReviewsContainer />} />
+					<Route path=":id/review/create" element={<BookReviewsContainer />} />
+					<Route path=":id/review/edit" element={<BookReviewsContainer />} />
 				</Route>
 			</Routes>
 		</div>)

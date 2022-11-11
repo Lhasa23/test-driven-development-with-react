@@ -4,7 +4,6 @@
     "build": "tsc && vite build",
     "e2e": "cypress run",
     "server-dev": "ts-node-dev server/server.ts",
-    "server-test": "ts-node-dev server/server_test.ts",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage"

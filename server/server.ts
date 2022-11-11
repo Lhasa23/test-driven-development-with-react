@@ -17,6 +17,11 @@ server.use((req: any, res: any, next: any) => {
 })
 
 server.use(middlewares)
+
+server.use(jsonServer.rewriter({
+	'/books/:id/reviews': '/books/:id?_embed=reviews'
+}))
+
 server.use(router)
 
 server.listen(8999, () => {
